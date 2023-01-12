@@ -1,0 +1,19 @@
+{
+  "name": "vite-minimal-static",
+  "version": "1.0.0",
+  "description": "Vite minimal static generator",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "watch": "vite",
+    "preview": "vite preview",
+    "start": "npm run dev",
+    "test": "npm run build"
+  },
+  "author": "Ryan Weal",
+  "license": "MIT",
+  "dependencies": {
+    "vite": "^4.0.4",
+    "vite-plugin-ssr": "^0.4.69"
+  }
+}
