@@ -11,6 +11,7 @@ export default (pageContext) => {
 
   return {
     routeParams: {
+      srcFilePath: pages[presumedFilePath] !== undefined ? presumedFilePath : alternateFilePath
     },
     precedence: 10,
   }

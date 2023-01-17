@@ -27,16 +27,9 @@ async function prerender(pageContext) {
 
 // preload the data on the server-side
 async function onBeforeRender(pageContext) {
-  const path = pageContext.urlPathname;
-  let twig_src;
 
-  // look at both /index.twig, /beans/index.twig
-  if (pages[`.${path}index.twig`]) {
-   twig_src = await pages[`.${path}index.twig`]()
-  }
-  else {
-    twig_src = await pages[`.${path}.twig`]()
-  }
+  // we validated the file name in the *.route.js
+  const twig_src = await pages[pageContext.routeParams.srcFilePath]();
 
   // optionally load ymlData here
 
