@@ -1,20 +1,17 @@
-const pages = import.meta.glob('./*.twig', { as: 'raw' })
+const pages = import.meta.glob('./**/*.twig', { as: 'raw' })
 
-export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true
+export default (pageContext) => {
+  // look at both /index.twig, /beans/index.twig
+  const presumedFilePath = `.${pageContext.urlPathname}.twig`
+  const alternateFilePath = `.${pageContext.urlPathname}index.twig` 
 
-export default async (pageContext) => {
-  const presumedFilePath = `.${pageContext.urlPathname == '/' ? '/index' : pageContext.urlPathname}.twig`
-
-  if (pages[presumedFilePath] === undefined) {
+  if (pages[presumedFilePath] === undefined && pages[alternateFilePath] === undefined) {
     return false;
   };
 
-  const twig = await pages[presumedFilePath]()
-
   return {
-    // here we can add anything to our route object
     routeParams: {
-      twig
-    }
+    },
+    precedence: 10,
   }
 }
