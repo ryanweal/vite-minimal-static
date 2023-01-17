@@ -1,5 +1,14 @@
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
 
+//import yaml from "yaml";
+import twig from "twig";
+import {
+  addDrupalExtensions
+} from 'drupal-twig-extensions/twig';
+
+// Add the extensions for Drupal.
+addDrupalExtensions(twig);
+
 const pages = import.meta.glob('./**/*.twig', { as: 'raw' })
 const passToClient = ['pageProps', 'routeParams']
 
@@ -29,9 +38,20 @@ async function onBeforeRender(pageContext) {
     twig_src = await pages[`.${path}.twig`]()
   }
 
+  // optionally load ymlData here
+
+  const rendered_twig = twig.twig({
+    data: twig_src,
+    //allowInlineIncludes: true,
+    //path: directory,
+  }).render({
+    //ymlData
+  });
+
   return {
     pageContext: {
-      twig: twig_src
+      twig: twig_src,
+      html: rendered_twig
     }
   }  
 }
@@ -45,7 +65,7 @@ function render(pageContext) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        <div id="app">${dangerouslySkipEscape(pageContext.twig)}</div>
+        <div id="app">${dangerouslySkipEscape(pageContext.html)}</div>
       </body>
     </html>`
 }
