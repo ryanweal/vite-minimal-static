@@ -4,5 +4,5 @@ import.meta.glob(['./**/*.js', '!./**/*client.js', '!./**/*server.js', '!./**/ro
 export { render }
 
 async function render(pageContext) {
-  console.log("Client-side JS!");
+  console.log("Client-side JS has finished loading.");
 }
