@@ -1,5 +1,4 @@
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
-import "./global.scss"
 
 //import yaml from "yaml";
 import twig from "twig";
