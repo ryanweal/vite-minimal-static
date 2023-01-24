@@ -1,0 +1,1 @@
+console.log('The example.js file was automatically discovered and loaded.')
