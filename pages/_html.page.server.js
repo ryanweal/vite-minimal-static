@@ -9,6 +9,8 @@ import {
 // Add the extensions for Drupal.
 addDrupalExtensions(twig);
 
+const base = process.env.BASE_URL || "/";
+const favicon = "logo.svg" // lives in assets folder
 const pages = import.meta.glob('./**/*.twig', { as: 'raw' })
 const passToClient = ['pageProps', 'routeParams']
 
@@ -55,6 +57,7 @@ function render(pageContext) {
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
+        <link rel="icon" href="${base}${favicon}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>

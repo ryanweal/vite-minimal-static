@@ -6,7 +6,7 @@ import ssr from 'vite-plugin-ssr/plugin'
 export default defineConfig({
     root: './pages',
 	base: `${process.env.BASE_URL || "/"}`,
-	publicDir: "./assets",
+	publicDir: "../assets",
 	css: {
 		devSourcemap: true,
 		postcss: {
