@@ -1,3 +1,7 @@
-<h1>About Kalastatic Pages</h1>
+{% embed "html.twig" with { 'title': 'About Page' } %}
 
-<p>Hello, world!</p>
+  {% block content %}
+     <h1>About Page</h1>
+  {% endblock %}
+
+{% endembed %}
