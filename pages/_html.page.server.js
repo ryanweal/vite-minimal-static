@@ -10,6 +10,7 @@ import {
 addDrupalExtensions(twig);
 
 const base = process.env.BASE_URL || "/";
+const templates_path = `./pages/templates/`
 const favicon = "logo.svg" // lives in assets folder
 const pages = import.meta.glob('./**/*.twig', { as: 'raw' })
 const passToClient = ['pageProps', 'routeParams']
@@ -37,8 +38,8 @@ async function onBeforeRender(pageContext) {
 
   const rendered_twig = twig.twig({
     data: twig_src,
-    //allowInlineIncludes: true,
-    //path: directory,
+    allowInlineIncludes: true,
+    path: templates_path,
   }).render({
     //ymlData
   });
